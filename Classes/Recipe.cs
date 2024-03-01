@@ -10,18 +10,37 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
     {
         private struct Ingredient
         {
-            private string name;
-            private int quantity;
-            private UnitOfMeasurement unit; 
+            public string name;
+            public int quantity;
+            public CookingMeasurement unit; 
 
+            public void multiplyQuantity(int factor)
+            {
+                quantity *= factor;
+            }
+
+            public Ingredient(string name,  int quantity, CookingMeasurement unit)
+            {
+                this.name = name;
+                this.quantity = quantity;
+                this.unit = unit;
+            }
         }
 
-        public enum UnitOfMeasurement
+        public enum CookingMeasurement
         {
-            table_spoon,
-            grams,
-            ounces,
-            
+            Teaspoon,
+            Tablespoon,
+            Cup,
+            Pint,
+            Quart,
+            Gallon,
+            Milliliter,
+            Liter,
+            Gram,
+            Kilogram,
+            Ounce,
+            Pound
         }
 
         private struct Step
@@ -36,8 +55,7 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
         int Num_Setps;
         Step[]? steps;
         Ingredient[]? ingredients;
-
-
+        
 
     }
 
