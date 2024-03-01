@@ -8,7 +8,7 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
 {
     internal class Recipe 
     {
-        private struct Ingredient
+        public struct Ingredient
         {
             public string name;
             public int quantity;
@@ -43,20 +43,29 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             Pound
         }
 
-        private struct Step
+        public struct Step
         {
             private int position;
             private string description;
         }
 
-
-
-        int Num_Ingredients;
-        int Num_Setps;
-        Step[]? steps;
-        Ingredient[]? ingredients;
+        public Step[]? steps;
+        public Ingredient[]? ingredients;
         
+        public void MakeIngriedientsArray(int num)
+        {
+            Ingredient[] ingredients = new Ingredient[num];
+            this.ingredients = ingredients;
+        }
+        public void MakeStepsArray(int num)
+        {
+            Step[] steps = new Step[num];
+            this.steps = steps;
+        }
 
+
+        public string Name { get => Name; set => Name = value; }
+        public int Num_Steps { get => Num_Steps; set => Num_Steps = value; }
     }
 
 }
