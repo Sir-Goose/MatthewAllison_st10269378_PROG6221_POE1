@@ -10,21 +10,20 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
     {
         public struct Ingredient
         {
-            public string name;
-            public int quantity;
-            public CookingMeasurement unit; 
+            private string name;
+            private int quantity;
+            private CookingMeasurement unit;
+
+            public string Name { get => name; set => name = value; }
+            public int Quantity { get => quantity; set => quantity = value; }
+            public CookingMeasurement Unit { get => unit; set => unit = value; }
 
             public void multiplyQuantity(int factor)
             {
                 quantity *= factor;
             }
+                
 
-            public Ingredient(string name,  int quantity, CookingMeasurement unit)
-            {
-                this.name = name;
-                this.quantity = quantity;
-                this.unit = unit;
-            }
         }
 
         public enum CookingMeasurement
