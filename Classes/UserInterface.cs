@@ -7,15 +7,27 @@ using System.Threading.Tasks;
 
 namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
 {
+    /// <summary>
+    /// This is the UserInterace class. It contains all the methods needed to 
+    /// perform the user facing functions of the program.
+    /// A user can create, view, change, delete recipes and
+    /// exit the program.
+    /// </summary>
     internal class UserInterface
     {
-        Recipe recipe = new Recipe();
+        Recipe recipe = new Recipe(); // create recipe object
 
         public void Start()
         {
-            MainMenu();
+            MainMenu(); //start the main menu
         }
-
+        //------------------------------------------------------------------------------------------------
+        /// <summary>
+        /// This is the MainMenu method. It is an infinite loop
+        /// with various options presented to the user.
+        /// The program always returns back here after an option is 
+        /// chosen and completed.
+        /// </summary>
         public void MainMenu()
         {
             while (true)
@@ -59,14 +71,26 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
                 }
             }
         }
-
+        //----------------------------------------------------------------------------------------------------------------
+        /// <summary>
+        /// This is the DeleteRecipe method.
+        /// It works by overwriting the existing
+        /// recipe and then informing the user.
+        /// </summary>
         private void DeleteRecipe()
         {
             recipe = new Recipe();
             Console.WriteLine("Recipe Deleted Successfully");
             Console.WriteLine();
         }
-
+        //-------------------------------------------------------------------------------------------------//
+        /// <summary>
+        /// This is the ChangeRecipe method.
+        /// It allows a user to change the scaling factor of the ingredients
+        /// in a recipe.
+        /// The scale can be changed to whatever is required by the user 
+        /// or reset back to the original value.
+        /// </summary>
         private void ChangeRecipe()
         {
             Console.WriteLine("Adjusting Recipe Scale");
@@ -110,7 +134,11 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             }
             Console.WriteLine();
         }
-
+        //--------------------------------------------------------------------------------------//
+        /// <summary>
+        /// This is the ViewRecipe method. It prints out the current recipe in a
+        /// neat and easy to read format.
+        /// </summary>
         private void ViewRecipe()
         {
             Console.WriteLine($"RECIPE: {recipe.Name()}");
@@ -140,7 +168,14 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             Console.ReadKey();
             Console.WriteLine();
         }
-
+        //--------------------------------------------------------------------------------------------------------------//
+        /// <summary>
+        /// This is the CreateRecipe method. Largest in the class. It is
+        /// every step required to capture the details of the recipe.
+        /// There is robust input validation and value checking to 
+        /// prevent a user from having to start from scratch if they 
+        /// make a typo.
+        /// </summary>
         private void CreateRecipe()
         {
             Console.WriteLine("Enter recipe name: ");
@@ -215,7 +250,7 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
                     }
 
                     if (
-                        Enum.TryParse<Recipe.CookingMeasurement>(
+                        Enum.TryParse<Recipe.CookingMeasurement>( // enusre inputted inut is valid
                             input,
                             true,
                             out Recipe.CookingMeasurement unit
@@ -290,3 +325,4 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
         }
     }
 }
+//-----------------------------------------------------------------------END-OF-FILE-----------------------------------------------------------------------------
