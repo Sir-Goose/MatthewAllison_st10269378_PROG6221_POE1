@@ -89,8 +89,18 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             Console.WriteLine("LIST OF INGREDIENTS: ");
             for ( int i = 0; i < recipe.ingredients.Length; i++ )
             {
-                Console.WriteLine(recipe.ingredients[i]);
+                Console.Write($"{i}. ");
+                Console.WriteLine(recipe.ingredients[i].ToString(recipe.Scaling_factor()));
             }
+            Console.WriteLine("");
+            Console.WriteLine("LIST OF STEPS: ");
+            for ( int i = 0; i < recipe.steps.Length; i++ )
+            {
+                Console.Write($"{i}. ");
+                Console.WriteLine(recipe.steps[i].Description());
+            }
+            Console.WriteLine("");
+            Console.WriteLine("End of recipe.");
         }
 
         private void CreateRecipe()
