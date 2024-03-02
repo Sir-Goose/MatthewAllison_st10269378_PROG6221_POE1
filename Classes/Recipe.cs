@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
 {
-    internal class Recipe 
+    internal class Recipe
     {
         public struct Ingredient
         {
@@ -14,16 +14,26 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             private int quantity;
             private CookingMeasurement unit;
 
-            public string Name { get => name; set => name = value; }
-            public int Quantity { get => quantity; set => quantity = value; }
-            public CookingMeasurement Unit { get => unit; set => unit = value; }
+            public string Name
+            {
+                get => name;
+                set => name = value;
+            }
+            public int Quantity
+            {
+                get => quantity;
+                set => quantity = value;
+            }
+            public CookingMeasurement Unit
+            {
+                get => unit;
+                set => unit = value;
+            }
 
             public void multiplyQuantity(int factor)
             {
                 quantity *= factor;
             }
-                
-
         }
 
         public enum CookingMeasurement
@@ -46,25 +56,62 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
         {
             private int position;
             private string description;
+
+            public void Position(int pos)
+            {
+                this.position = pos;
+            }
+            public int Position()
+            {
+                return this.position;
+            }
+
+            public void Description(string description)
+            {
+                this.description = description;
+            }
+            public string Description()
+            {
+                return description;
+            }
         }
 
         public Step[]? steps;
         public Ingredient[]? ingredients;
-        
+
         public void MakeIngriedientsArray(int num)
         {
             Ingredient[] ingredients = new Ingredient[num];
             this.ingredients = ingredients;
         }
+
         public void MakeStepsArray(int num)
         {
             Step[] steps = new Step[num];
             this.steps = steps;
         }
 
+        private string name = "";
+        private int num_steps = 0;
 
-        public string Name { get => Name; set => Name = value; }
-        public int Num_Steps { get => Num_Steps; set => Num_Steps = value; }
+        public void Name(string name)
+        {
+            this.name = name;
+        }
+
+        public string Name()
+        {
+            return name;
+        }
+
+        public void Num_steps(int num)
+        {
+            this.num_steps = num;
+        }
+
+        public int Num_steps()
+        {
+            return this.num_steps;
+        }
     }
-
 }

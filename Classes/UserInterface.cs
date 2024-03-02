@@ -8,10 +8,13 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
 {
     internal class UserInterface
     {
+        Recipe recipe = new Recipe();
+
         public void Start()
         {
             MainMenu();
         }
+
         public void MainMenu()
         {
             string choice = "0";
@@ -28,7 +31,7 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             }
             switch (choice)
             {
-                case "1": 
+                case "1":
                     CreateRecipe();
                     break;
                 case "2":
@@ -52,19 +55,22 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
 
         private void CreateRecipe()
         {
-            Recipe recipe = new Recipe();
             Console.WriteLine("Enter recipe name: ");
-            recipe.Name = Console.ReadLine();
+            try
+            {
+                recipe.Name(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("");
+            }
 
             Console.WriteLine("Enter number of ingredients: ");
             int num_ingredients = int.Parse(Console.ReadLine());
             recipe.MakeIngriedientsArray(num_ingredients);
 
-            Console.WriteLine("Enter number of steps: ");
-            int num_steps = int.Parse(Console.ReadLine());
-            recipe.MakeStepsArray(num_steps);
             
-            for(int i = 0; i < recipe.ingredients.Length; i++)
+            for (int i = 0; i < recipe.ingredients.Length; i++)
             {
                 Console.WriteLine("Ingriedient Name: ");
                 recipe.ingredients[i].Name = Console.ReadLine();
@@ -72,20 +78,46 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
                 Console.WriteLine("Measurement Unit: ");
                 Console.WriteLine("Enter one of the following: ");
 
-                foreach (Recipe.CookingMeasurement measurement in Enum.GetValues(typeof(Recipe.CookingMeasurement)))
+                foreach (
+                    Recipe.CookingMeasurement measurement in Enum.GetValues(
+                        typeof(Recipe.CookingMeasurement)
+                    )
+                )
                 {
                     Console.WriteLine(measurement);
-
                 }
                 string input = Console.ReadLine();
 
-                if (Enum.TryParse<Recipe.CookingMeasurement>(input, true, out Recipe.CookingMeasurement unit))
+                if (
+                    Enum.TryParse<Recipe.CookingMeasurement>(
+                        input,
+                        true,
+                        out Recipe.CookingMeasurement unit
+                    )
+                )
                 {
                     recipe.ingredients[i].Unit = unit;
                 }
                 Console.WriteLine("Quantity: ");
                 recipe.ingredients[i].Quantity = int.Parse(Console.ReadLine());
             }
+            Console.WriteLine("Thank you, all ingredients captured");
+
+            Console.WriteLine("Enter number of steps: ");
+            int num_steps = int.Parse(Console.ReadLine());
+            recipe.MakeStepsArray(num_steps);
+
+            for (int i = 0;i < num_steps; i++)
+            {
+                Console.WriteLine($"Please enter step {i}");
+                Recipe.Step step = new Recipe.Step();
+                step.Position(i);
+                step.Description(Console.ReadLine());
+                Console.WriteLine();
+
+            }
+            Console.WriteLine("Thank you. Recipe has been captured");
+
         }
     }
 }
