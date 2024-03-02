@@ -34,6 +34,16 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             {
                 quantity *= factor;
             }
+            new public string ToString(float scaling_factor)
+            {
+                string output = "";
+                output += quantity * scaling_factor;
+                output += " of ";
+                output += name;
+                output += ".";
+
+                return output;
+            }
         }
 
         public enum CookingMeasurement

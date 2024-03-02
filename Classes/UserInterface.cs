@@ -72,11 +72,12 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             {
                 case "1":
                     Console.WriteLine("Enter new scaling factor: ");
-                    float.Parse(Console.ReadLine());
+                    recipe.Scaling_factor(float.Parse(Console.ReadLine()));
                     Console.WriteLine($"Scaling factor adjusted to {recipe.Scaling_factor()}");
                     break;
                 case "2":
                     Console.WriteLine("Scaling factor reset to 1");
+                    recipe.Scaling_factor(1);
                     break;
             }
         }
@@ -163,6 +164,7 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
                 step.Position(i);
                 step.Description(Console.ReadLine());
                 Console.WriteLine();
+                recipe.steps[i] = step;
             }
             Console.WriteLine("Thank you. Recipe has been captured");
         }
