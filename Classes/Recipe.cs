@@ -65,7 +65,7 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
                 return output;
             }
         }
-        //----------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------//
 
         /// <summary>
         /// A cooking measurement enum to ensure that only real and sensible
@@ -86,7 +86,7 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             Ounce,
             Pound
         }
-        //----------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------//
         /// <summary>
         /// The Step struct.
         /// Data structure to store all the information
@@ -115,7 +115,7 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
                 return description;
             }
         }
-        //---------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------//
         public Step[]? steps; // step array
         public Ingredient[]? ingredients; // ingredient array
 
@@ -137,7 +137,7 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             Step[] steps = new Step[num];
             this.steps = steps;
         }
-        //-----------------------------------------------------------------------
+        //-----------------------------------------------------------------------//
         private string name = ""; //recipe name
         private int num_steps = 0; // step count
         private float scaling_factor = 1; // current scaling factor
@@ -171,4 +171,4 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
         }
     }
 }
-//----------------------------------------------------------END-OF-FILE--------------------------------------------------------------------------
+//----------------------------------------------------------END-OF-FILE--------------------------------------------------------------------------//

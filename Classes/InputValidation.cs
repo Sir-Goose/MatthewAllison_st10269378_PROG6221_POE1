@@ -170,7 +170,7 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             }
             return option;
         }
-        //-----------------------------------------------------------------
+        //-----------------------------------------------------------------//
         /// <summary>
         /// This is the ValidateQuantity method.
         /// It checks for null values.
@@ -202,3 +202,4 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
         }
     }
 }
+//--------------------------------------------------------------------END-OF-FILE---------------------------------------------------------------//
