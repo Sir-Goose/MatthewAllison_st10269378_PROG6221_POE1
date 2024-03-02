@@ -117,8 +117,25 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             return option;
         }
 
-        internal static Option ValidateQuantity(string? v)
+        internal static Option ValidateQuantity(string? input)
         {
+            Option option = new Option();
+            if (input != null)
+            {
+                input = input.Trim();
+                try
+                {
+                    int.Parse(input);
+                    option.valid = true;
+                    option.value = input;
+                }
+                catch
+                {
+                    option.valid = false;
+                    return option;
+                }
+            }
+            return option;
 
         }
     }

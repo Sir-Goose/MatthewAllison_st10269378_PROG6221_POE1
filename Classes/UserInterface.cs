@@ -91,7 +91,7 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
                 case "1":
                     Console.WriteLine("Enter new scaling factor in arabic numerals: ");
                     InputValidation.Option option1 = InputValidation.ValidateScalingFactor(Console.ReadLine());
-                    if (option.value == null)
+                    if (option1.value == null)
                     {
                         Console.WriteLine("Please enter an arabic numeral");
                         Console.WriteLine("Scaling factor reset to: 1.");
