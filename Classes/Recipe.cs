@@ -93,6 +93,7 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
 
         private string name = "";
         private int num_steps = 0;
+        private float scaling_factor = 1; 
 
         public void Name(string name)
         {
@@ -112,6 +113,14 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
         public int Num_steps()
         {
             return this.num_steps;
+        }
+        public void Scaling_factor(float scaling_factor)
+        {
+            this.scaling_factor = scaling_factor;
+        }
+        public float Scaling_factor()
+        {
+            return this.scaling_factor;
         }
     }
 }
