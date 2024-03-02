@@ -64,9 +64,10 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             int num_steps = int.Parse(Console.ReadLine());
             recipe.MakeStepsArray(num_steps);
             
-            foreach (Recipe.Ingredient ingredient in recipe.ingredients)
+            for(int i = 0; i < recipe.ingredients.Length; i++)
             {
                 Console.WriteLine("Ingriedient Name: ");
+                recipe.ingredients[i].Name = Console.ReadLine();
 
                 Console.WriteLine("Measurement Unit: ");
                 Console.WriteLine("Enter one of the following: ");
@@ -74,12 +75,16 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
                 foreach (Recipe.CookingMeasurement measurement in Enum.GetValues(typeof(Recipe.CookingMeasurement)))
                 {
                     Console.WriteLine(measurement);
+
                 }
+                string input = Console.ReadLine();
 
-
-
-
+                if (Enum.TryParse<Recipe.CookingMeasurement>(input, true, out Recipe.CookingMeasurement unit))
+                {
+                    recipe.ingredients[i].Unit = unit;
+                }
                 Console.WriteLine("Quantity: ");
+                recipe.ingredients[i].Quantity = int.Parse(Console.ReadLine());
             }
         }
     }
