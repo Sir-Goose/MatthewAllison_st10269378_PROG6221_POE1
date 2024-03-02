@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,7 +31,12 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
                 Console.WriteLine("5. Exit");
                 Console.WriteLine("");
                 Console.WriteLine("Enter choice: ");
-                choice = Console.ReadLine();
+
+                InputValidation.Option option = InputValidation.ValidateMainMenu(Console.ReadLine());
+                if (option.value == null) {
+                    continue;
+                }
+                choice = option.value;
                 Console.WriteLine();
 
                 switch (choice)
@@ -70,14 +76,32 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
             Console.WriteLine("1. Adjust scale");
             Console.WriteLine("2. Reset scael");
             Console.WriteLine("Enter choice: ");
-            string choice = Console.ReadLine();
+            InputValidation.Option option = InputValidation.ValidateChangeRecipeMenu(Console.ReadLine());
+            if (option.value == null)
+            {
+                Console.WriteLine("Pleas enter either 1 or 2.");
+                Console.WriteLine();
+                ChangeRecipe();
+            }
+            string choice = option.value;
+            
             Console.WriteLine();
             switch (choice)
             {
                 case "1":
-                    Console.WriteLine("Enter new scaling factor: ");
-                    recipe.Scaling_factor(float.Parse(Console.ReadLine()));
+                    Console.WriteLine("Enter new scaling factor in arabic numerals: ");
+                    InputValidation.Option option1 = InputValidation.ValidateScalingFactor(Console.ReadLine());
+                    if (option.value == null)
+                    {
+                        Console.WriteLine("Please enter an arabic numeral");
+                        Console.WriteLine("Scaling factor reset to: 1.");
+                        recipe.Scaling_factor(1);
+                    }
+                    else
+                    {
+                    recipe.Scaling_factor(float.Parse(option1.value));
                     Console.WriteLine($"Scaling factor adjusted to: {recipe.Scaling_factor()}");
+                    }
                     break;
                 case "2":
                     Console.WriteLine("Scaling factor reset to: 1");
@@ -120,20 +144,53 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
         private void CreateRecipe()
         {
             Console.WriteLine("Enter recipe name: ");
-            recipe.Name(Console.ReadLine());
+            InputValidation.Option option = InputValidation.ValidateRecipeName(Console.ReadLine());
+            if (option.value == null)
+            {
+                CreateRecipe();
+            }
+            else
+            {
+                recipe.Name(option.value);
+            }
             Console.WriteLine();
 
-            Console.WriteLine("Enter number of ingredients: ");
-            int num_ingredients = int.Parse(Console.ReadLine());
+
+            
+            int num_ingredients;
+            while (true)
+            {
+                Console.WriteLine("Enter number of ingredients: ");
+                InputValidation.Option option1 = InputValidation.ValidateNumberIngredients(Console.ReadLine());
+                if (option1.value == null)
+                {
+                    continue;
+                }
+                else
+                {
+                    num_ingredients = int.Parse(option1.value);
+                    break;
+                }
+            }
             recipe.MakeIngriedientsArray(num_ingredients);
             Console.WriteLine();
 
             for (int i = 0; i < recipe.ingredients.Length; i++)
             {
                 Console.WriteLine($"Ingredient {i + 1}:");
-                Console.WriteLine("Enter ingriedient name: ");
-                recipe.ingredients[i].Name = Console.ReadLine();
-                Console.WriteLine() ;
+                while (true)
+                {
+                    
+                    Console.WriteLine("Enter ingriedient name: ");
+                    InputValidation.Option option1 = InputValidation.ValidateIngredientName(Console.ReadLine());
+                    if (option1.value == null)
+                    {
+                        continue ;
+                    }
+                    recipe.ingredients[i].Name = option1.value;
+                    Console.WriteLine();
+                    break;
+                }
 
                 Console.WriteLine("MEASUREMENT UNITS: ");
                 Console.WriteLine("-------------------");
@@ -147,42 +204,86 @@ namespace MatthewAllison_st10269378_PROG6221_POE1.Classes
                     Console.WriteLine(measurement);
                 }
                 Console.WriteLine("-------------------");
-
-                Console.WriteLine("Enter one of the above: ");
-                string input = Console.ReadLine();
-
-                if (
-                    Enum.TryParse<Recipe.CookingMeasurement>(
-                        input,
-                        true,
-                        out Recipe.CookingMeasurement unit
-                    )
-                )
+                while (true)
                 {
-                    recipe.ingredients[i].Unit = unit;
+
+                    Console.WriteLine("Enter one of the above: ");
+                    string input = Console.ReadLine();
+                    if ( input == null)
+                    {
+                        continue;
+                    }
+
+                    if (
+                        Enum.TryParse<Recipe.CookingMeasurement>(
+                            input,
+                            true,
+                            out Recipe.CookingMeasurement unit
+                        )
+                    )
+                    {
+                        recipe.ingredients[i].Unit = unit;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please choose a valid option");
+                        continue;
+                    }
                 }
                 Console.WriteLine();
 
-                Console.WriteLine("Enter quanity: ");
-                recipe.ingredients[i].Quantity = int.Parse(Console.ReadLine());
+                while (true)
+                {
+                    Console.WriteLine("Enter quantity: ");
+                    InputValidation.Option option1 = InputValidation.ValidateQuantity(Console.ReadLine());
+                    if (option1.value == null)
+                    {
+                        Console.WriteLine("Please use arabic numerals only.");
+                        continue;
+
+                    }
+                    recipe.ingredients[i].Quantity = int.Parse(option1.value);
+                    break;
+                }
                 Console.WriteLine();
             }
             Console.WriteLine("Thank you, all ingredients captured");
             Console.WriteLine();
 
-            Console.WriteLine("Enter number of steps: ");
-            int num_steps = int.Parse(Console.ReadLine());
-            recipe.MakeStepsArray(num_steps);
+            int num_steps;
+            while (true)
+            {
+
+                Console.WriteLine("Enter number of steps: ");
+                InputValidation.Option option1 = InputValidation.ValidateQuantity(Console.ReadLine());
+                if (option1.value == null)
+                {
+                    Console.WriteLine("Please use arabic numerals only.");
+                    continue;
+                }
+                num_steps = int.Parse(option1.value);
+                recipe.MakeStepsArray(num_steps);
+                break;
+            }
             Console.WriteLine();
 
             for (int i = 0; i < num_steps; i++)
             {
-                Console.WriteLine($"Please enter step {i + 1}");
-                Recipe.Step step = new Recipe.Step();
-                step.Position(i);
-                step.Description(Console.ReadLine());
-                Console.WriteLine();
-                recipe.steps[i] = step;
+                while (true)
+                {
+                    Console.WriteLine($"Please enter step {i + 1}");
+                    Recipe.Step step = new Recipe.Step();
+                    step.Position(i);
+                    step.Description(Console.ReadLine());
+                    if (step.Description() == null)
+                    {
+                        continue;
+                    }
+                    Console.WriteLine();
+                    recipe.steps[i] = step;
+                    break;
+                }
             }
             Console.WriteLine("Thank you. Recipe has been captured");
             Console.WriteLine();
